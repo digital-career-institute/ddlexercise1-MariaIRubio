@@ -1,0 +1,160 @@
+mysql> CREATE TABLE Movies 
+    -> (id INT,
+    -> title VARCHAR(100),
+    -> director VARCHAR(50), 
+    -> release_year INT, 
+    -> genre VARCHAR(50));
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> ALTER TABLE Movies ADD rating DECIMAL(3,1);
+Query OK, 0 rows affected (0,02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Movies;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| title        | varchar(100) | YES  |     | NULL    |       |
+| director     | varchar(50)  | YES  |     | NULL    |       |
+| release_year | int          | YES  |     | NULL    |       |
+| genre        | varchar(50)  | YES  |     | NULL    |       |
+| rating       | decimal(3,1) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0,00 sec)
+
+mysql> CREATE TABLE Students 
+    -> (student_id INT,
+    -> student_name VARCHAR(50),
+    -> age INT,
+    -> grade VARCHAR(2));
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> DESCRIBE Students;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | YES  |     | NULL    |       |
+| student_name | varchar(50) | YES  |     | NULL    |       |
+| age          | int         | YES  |     | NULL    |       |
+| grade        | varchar(2)  | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
+
+mysql> ALTER TABLE Students DROP age;
+Query OK, 0 rows affected (0,01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Students;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | YES  |     | NULL    |       |
+| student_name | varchar(50) | YES  |     | NULL    |       |
+| grade        | varchar(2)  | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0,00 sec)
+
+mysql> CREATE TABLE Events
+    -> (event_id INT,
+    -> event_name VARCHAR(100),
+    -> date DATE,
+    -> location VARCHAR(100));
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> DESCRIBE Events;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| event_id   | int          | YES  |     | NULL    |       |
+| event_name | varchar(100) | YES  |     | NULL    |       |
+| date       | date         | YES  |     | NULL    |       |
+| location   | varchar(100) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
+
+mysql> DESCRIBE Events;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| event_id   | int          | YES  |     | NULL    |       |
+| event_name | varchar(100) | YES  |     | NULL    |       |
+| date       | date         | YES  |     | NULL    |       |
+| location   | varchar(100) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
+
+mysql> SELECT COUNT(*) FROM Events;
++----------+
+| COUNT(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0,00 sec)
+
+mysql> INSERT INTO Events VALUES (1, 'Sara's Wedding', '2023-10-20', 'Oliva');
+    '> ^C
+mysql> INSERT INTO Events VALUES(1, 'Sara Wedding', '2023-10-20', 'Oliva');
+Query OK, 1 row affected (0,00 sec)
+
+mysql> INSERT INTO Events VALUES(2, 'Adriana Birthday', '2024-02-19', 'Medina del Pomar');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO Events VALUES(3, 'Rosalia Concert', '2023-12-06', 'Düsseldorf');
+Query OK, 1 row affected (0,02 sec)
+
+mysql> SELECT * FROM Events;
++----------+------------------+------------+------------------+
+| event_id | event_name       | date       | location         |
++----------+------------------+------------+------------------+
+|        1 | Sara Wedding     | 2023-10-20 | Oliva            |
+|        2 | Adriana Birthday | 2024-02-19 | Medina del Pomar |
+|        3 | Rosalia Concert  | 2023-12-06 | Düsseldorf       |
++----------+------------------+------------+------------------+
+3 rows in set (0,00 sec)
+
+mysql> TRUNCATE TABLE Events;
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> SELECT * FROM Events;
+Empty set (0,00 sec)
+
+mysql> SELECT COUNT(*) FROM Events;
++----------+
+| COUNT(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0,00 sec)
+
+mysql> CREATE TABLE Restaurants
+    -> (restaurant_id INT,
+    -> name VARCHAR(50),
+    -> cuisine VARCHAR(50),
+    -> location VARCHAR(100));
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> DESCRIBE Restaurants;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| restaurant_id | int          | YES  |     | NULL    |       |
+| name          | varchar(50)  | YES  |     | NULL    |       |
+| cuisine       | varchar(50)  | YES  |     | NULL    |       |
+| location      | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
+
+mysql> ALTER TABLE Restaurants RENAME TO DiningSpots;
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> DESCRIBE DiningSpots;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| restaurant_id | int          | YES  |     | NULL    |       |
+| name          | varchar(50)  | YES  |     | NULL    |       |
+| cuisine       | varchar(50)  | YES  |     | NULL    |       |
+| location      | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
